@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+//玩家坦克类
 public class Tank {
     public int direction=3;
     boolean left,right,up,down;
@@ -159,6 +160,7 @@ public class Tank {
         }
     }
 
+    //检查子弹是否仍在窗体内，如果不在则删除
     public boolean CheckBullets(Bullet bullet){
         if(bullet.x<=20||bullet.y<=30||bullet.x+bullet.width>=780||bullet.y+bullet.height>=790){
             return true;

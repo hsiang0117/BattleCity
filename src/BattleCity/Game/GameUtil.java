@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
+//用于加载图片的工具类
 public class GameUtil {
     public static Image getImage(String path){
         URL url=GameUtil.class.getClassLoader().getResource(path);

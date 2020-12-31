@@ -4,6 +4,7 @@ import BattleCity.Game.GameFrame;
 
 import java.awt.*;
 
+//子弹类
 public class Bullet {
     private static int speed=3;
     public int x,y,width,height;

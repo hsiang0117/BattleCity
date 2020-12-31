@@ -7,6 +7,7 @@ import BattleCity.Terrains.Terrain;
 import java.awt.*;
 import java.util.*;
 
+//敌人类
 public class Enemy {
     private Image left_img,right_img,up_img,down_img,img;
     private static int speed=1;

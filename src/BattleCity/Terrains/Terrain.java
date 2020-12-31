@@ -2,6 +2,7 @@ package BattleCity.Terrains;
 
 import java.awt.*;
 
+//地形类，派生出四个子类
 public class Terrain {
     private Image img;
     public boolean moveable;

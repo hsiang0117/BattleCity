@@ -12,33 +12,33 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GameFrame extends Frame {
 
-    static int level=1;
-    static int enemyNum=15;
-    static int enemyLeft=enemyNum;
-    static int enemyDestroied=0;
-    static String mapPath="src/Maps/map"+level+".txt";
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 850;
-    public PaintThread paintThread;
-    public static ArrayList<Enemy> enemies=new ArrayList<>();
+    static int level=1;//当前关卡
+    static int enemyNum=15;//每关敌人数
+    static int enemyLeft=enemyNum;//当前关卡剩余敌人数
+    static int enemyDestroied=0;//用于计数已击杀的敌人
+    static String mapPath="src/Maps/map"+level+".txt";//地图文件路径
+    public static final int WIDTH = 800;//窗体宽度
+    public static final int HEIGHT = 850;//窗体高度
+    public PaintThread paintThread;//绘制线程
+    public static ArrayList<Enemy> enemies=new ArrayList<>();//敌人列表
     public static Tank tank=new Tank("Resources/left_tank.png","Resources/up_tank.png",
-            "Resources/right_tank.png","Resources/down_tank.png",300,750);
-    public static Base base=new Base(380,750);
-    public static Map map=new Map(mapPath);
+            "Resources/right_tank.png","Resources/down_tank.png",300,750);//玩家坦克
+    public static Base base=new Base(380,750);//碉堡
+    public static Map map=new Map(mapPath);//生成地图
 
-    int gameState=0;
-    int score=0;
-    int life=2;
+    int gameState=0;//判断当前游戏状态，0代表首页，1代表游戏中，2代表过关，3代表游戏结束，4代表游戏通关
+    int score=0;//玩家得分
+    int life=2;//玩家生命值
 
 
     public static void main(String[] args) {
         new GameFrame().launch();
     }
 
+    //加载窗口
     public void launch(){
         this.setTitle("BattleCity");
         this.setSize(WIDTH, HEIGHT);
@@ -174,6 +174,7 @@ public class GameFrame extends Frame {
         }
     }
 
+    //刷新游戏，在游戏结束和游戏通关后调用
     private void RefreshGame(){
         level=1;
         life=2;
@@ -198,10 +199,13 @@ public class GameFrame extends Frame {
         g.drawImage(ImageBuffer, 0, 0, this);
     }
 
+    //生成敌人
     int location=1;
     private void GenerateEnemy(){
         int x1=60,x2=280,x3=500,x4=720,y=80;
+        //限制最多有四个敌人同时存在
         if(enemies.size()<4&&enemyLeft>0){
+            //四个刷新点轮流刷新
             switch (location) {
                 case 1:
                     Enemy enemy1 = new Enemy("Resources/left_enemy.png", "Resources/up_enemy.png",
@@ -231,6 +235,7 @@ public class GameFrame extends Frame {
         }
     }
 
+    //起始页面
     private void StartPage(Graphics g){
         PrintInfo(g,"坦克大战",80,220,300);
         PrintInfo(g,"by向建鑫",25,500, 340);
@@ -239,16 +244,19 @@ public class GameFrame extends Frame {
         PrintInfo(g,"按回车键开始游戏",50,180,600);
     }
 
+    //过关页面
     private void ClearPage(Graphics g){
         PrintInfo(g,"恭喜过关",80,220,300);
         PrintInfo(g,"按回车键进入下一关",50,180,600);
     }
 
+    //游戏结束页面
     private void GameOver(Graphics g){
         PrintInfo(g,"游戏结束",80,220,300);
         PrintInfo(g,"按回车键重新游戏",50,180,600);
     }
 
+    //游戏通关页面-
     private void GamePassed(Graphics g){
         PrintInfo(g,"你完成了全部3关",60,150,300);
         PrintInfo(g,"按ESC键返回首页",50,180,600);
@@ -287,6 +295,7 @@ public class GameFrame extends Frame {
         }
     }
 
+    //用于打印文本的方法
     public void PrintInfo(Graphics g,String message,int size,int x,int y){
         g.setColor(Color.white);
         Font f = new Font("宋体",Font.BOLD,size);

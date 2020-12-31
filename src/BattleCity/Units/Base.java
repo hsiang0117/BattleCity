@@ -4,6 +4,7 @@ import BattleCity.Game.GameUtil;
 
 import java.awt.*;
 
+//碉堡类
 public class Base {
     private Image img= GameUtil.getImage("Resources/base.png");
     public int x,y,width,height;

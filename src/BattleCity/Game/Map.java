@@ -8,9 +8,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//地图类，文件生成地图
+//地图信息以txt文件保存在src/Maps中，每一行代表一个地形对象
+//第一个数字代表种类 1=砖块 2=铁块 3=草地 4=水
+//第二个数字代表x坐标 第三个数字代表y坐标
 public class Map {
     public ArrayList<Terrain> terrains=new ArrayList<>();
-
 
     public Map(String filePath){
         File file=new File(filePath);
